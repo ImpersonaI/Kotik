@@ -2,7 +2,6 @@ package main.java.animals;
 
 public class Kotik {
 
-  private String[] result = new String[24];
   private final static int METHODS = 5;
   private static int count = 0;
   private String name;
@@ -11,22 +10,19 @@ public class Kotik {
   private double weight;
 
   public Kotik() {
-
+    count++;
   }
 
   public Kotik(String name, String voice, double satiety, double weight) {
+    count++;
     this.setName(name);
     this.setVoice(voice);
     this.setSatiety(satiety);
     this.setWeight(weight);
   }
 
-  public String[] getResult() {
-    return this.result;
-  }
-
-  public int getCount() {
-    return this.count;
+  public static int getCount() {
+    return count;
   }
 
   public void setName(String name) {
@@ -61,17 +57,12 @@ public class Kotik {
     return this.weight;
   }
 
-  public String toString() {
-    return getName() + " " + getVoice() + " " + getSatiety() + " " + getWeight();
-  }
-
   public void eat(double satiety) {
     this.satiety += satiety;
   }
 
   public void eat(double satiety, String food) {
     eat(satiety);
-    System.out.println("Food is " + food);
   }
 
   public void eat() {
@@ -80,16 +71,15 @@ public class Kotik {
 
   private boolean isNotHungry() {
     if (satiety > 0) {
-      satiety -= 5;
       return true;
     } else {
-      System.out.println("Cat is hungry");
       return false;
     }
   }
 
   public boolean play() {
     if (isNotHungry()) {
+      satiety -= 5;
       System.out.println("Cat is playing");
       return true;
     } else {
@@ -99,6 +89,7 @@ public class Kotik {
 
   public boolean sleep() {
     if (isNotHungry()) {
+      satiety -= 1;
       System.out.println("Cat is sleeping");
       return true;
     } else {
@@ -108,6 +99,7 @@ public class Kotik {
 
   public boolean wash() {
     if (isNotHungry()) {
+      satiety -= 4;
       System.out.println("Cat is washing");
       return true;
     } else {
@@ -117,6 +109,7 @@ public class Kotik {
 
   public boolean walk() {
     if (isNotHungry()) {
+      satiety -= 2;
       System.out.println("Cat is walking");
       return true;
     } else {
@@ -126,6 +119,7 @@ public class Kotik {
 
   public boolean hunt() {
     if (isNotHungry()) {
+      satiety -= 8;
       System.out.println("Cat is hunting");
       return true;
     } else {
@@ -138,7 +132,7 @@ public class Kotik {
   }
 
   public void liveAnotherDay() {
-
+    String[] result = new String[24];
     for (int i = 0; i < result.length; i++) {
       switch (getRandomNumber()) {
         case 1:
@@ -147,7 +141,6 @@ public class Kotik {
           } else {
             eat();
             result[i] = String.valueOf(i) + " - " + "ел";
-
           }
           break;
         case 2:
@@ -187,7 +180,7 @@ public class Kotik {
           break;
       }
     }
-    for (String iterable_element : this.result) {
+    for (String iterable_element : result) {
       System.out.println(String.valueOf(iterable_element));
     }
   }

@@ -1,9 +1,5 @@
 package main.java.animals;
 
-import java.util.ArrayList;
-
-import javax.swing.SwingWorker.StateValue;
-
 public class Kotik {
 
   private String[] result = new String[24];
@@ -82,7 +78,7 @@ public class Kotik {
     eat(2.5, "Pizza");
   }
 
-  private boolean isHungry() {
+  private boolean isNotHungry() {
     if (satiety > 0) {
       satiety -= 5;
       return true;
@@ -93,7 +89,7 @@ public class Kotik {
   }
 
   public boolean play() {
-    if (isHungry()) {
+    if (isNotHungry()) {
       System.out.println("Cat is playing");
       return true;
     } else {
@@ -102,7 +98,7 @@ public class Kotik {
   }
 
   public boolean sleep() {
-    if (isHungry()) {
+    if (isNotHungry()) {
       System.out.println("Cat is sleeping");
       return true;
     } else {
@@ -111,7 +107,7 @@ public class Kotik {
   }
 
   public boolean wash() {
-    if (isHungry()) {
+    if (isNotHungry()) {
       System.out.println("Cat is washing");
       return true;
     } else {
@@ -120,7 +116,7 @@ public class Kotik {
   }
 
   public boolean walk() {
-    if (isHungry()) {
+    if (isNotHungry()) {
       System.out.println("Cat is walking");
       return true;
     } else {
@@ -129,7 +125,7 @@ public class Kotik {
   }
 
   public boolean hunt() {
-    if (isHungry()) {
+    if (isNotHungry()) {
       System.out.println("Cat is hunting");
       return true;
     } else {
@@ -142,73 +138,56 @@ public class Kotik {
   }
 
   public void liveAnotherDay() {
-    ArrayList<String> myArray = new ArrayList<String>();
-    System.out.println(getRandomNumber());
-    int i = 0;
-    for (String hour : this.result) {
+
+    for (int i = 0; i < result.length; i++) {
       switch (getRandomNumber()) {
         case 1:
           if (play()) {
-            System.out.print("Hour =" + hour);
-            hour = String.valueOf(i) + " - " + "играл";
-            myArray.add(String.valueOf(i) + " - " + "играл");
+            result[i] = String.valueOf(i) + " - " + "играл";
           } else {
             eat();
-            myArray.add(String.valueOf(i) + " - " + "ел");
-            hour = String.valueOf(i) + " - " + "ел";
+            result[i] = String.valueOf(i) + " - " + "ел";
 
           }
           break;
         case 2:
           if (sleep()) {
-            hour = String.valueOf(i) + " - " + "спал";
-            myArray.add(String.valueOf(i) + " - " + "спал");
+            result[i] = String.valueOf(i) + " - " + "спал";
           } else {
             eat();
-            myArray.add(String.valueOf(i) + " - " + "ел");
-            hour = String.valueOf(i) + " - " + "ел";
+            result[i] = String.valueOf(i) + " - " + "ел";
           }
           break;
         case 3:
           if (wash()) {
-            hour = String.valueOf(i) + " - " + "мылся";
-            myArray.add(String.valueOf(i) + " - " + "мылся");
+            result[i] = String.valueOf(i) + " - " + "мылся";
           } else {
-            myArray.add(String.valueOf(i) + " - " + "ел");
             eat();
-            hour = String.valueOf(i) + " - " + "ел";
+            result[i] = String.valueOf(i) + " - " + "ел";
           }
           break;
         case 4:
           if (walk()) {
-            hour = String.valueOf(i) + " - " + "гулял";
-            myArray.add(String.valueOf(i) + " - " + "мылся");
+            result[i] = String.valueOf(i) + " - " + "гулял";
           } else {
             eat();
-            myArray.add(String.valueOf(i) + " - " + "ел");
-            hour = String.valueOf(i) + " - " + "ел";
+            result[i] = String.valueOf(i) + " - " + "ел";
           }
           break;
         case 5:
           if (hunt()) {
-            hour = String.valueOf(i) + " - " + "охотился";
-            myArray.add(String.valueOf(i) + " - " + "мылся");
+            result[i] = String.valueOf(i) + " - " + "охотился";
           } else {
             eat();
-            myArray.add(String.valueOf(i) + " - " + "ел");
-            hour = String.valueOf(i) + " - " + "ел";
+            result[i] = String.valueOf(i) + " - " + "ел";
           }
           break;
 
         default:
           break;
       }
-      i++;
     }
     for (String iterable_element : this.result) {
-      System.out.println(String.valueOf(iterable_element));
-    }
-    for (String iterable_element : myArray) {
       System.out.println(String.valueOf(iterable_element));
     }
   }
